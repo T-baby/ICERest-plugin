@@ -11,7 +11,7 @@ import java.util.Map;
  * An example of using <code>Reflect</code> is <code><pre>
  * // Static import all reflection methods to decrease verbosity
  * import static org.joor.Reflect.*;
- * 
+ * <p>
  * // Wrap an Object / Class / class name with the on() method:
  * on("java.lang.String")
  * // Invoke constructors using the create() method:
@@ -19,7 +19,7 @@ import java.util.Map;
  * // Invoke methods using the call() method:
  * .call("toString")
  * // Retrieve the wrapped object
- * 
+ * <p>
  * @author Lukas Eder
  */
 public class Reflect {
@@ -32,12 +32,10 @@ public class Reflect {
      * Wrap a class name.
      * <p>
      * This is the same as calling <code>on(Class.forName(name))</code>
-     * 
-     * @param name
-     *            A fully qualified class name
+     *
+     * @param name A fully qualified class name
      * @return A wrapped class object, to be used for further reflection.
-     * @throws ReflectException
-     *             If any reflection exception occurred.
+     * @throws ReflectException If any reflection exception occurred.
      * @see #on(Class)
      */
     public static Reflect on(String name) throws ReflectException {
@@ -49,9 +47,8 @@ public class Reflect {
      * <p>
      * Use this when you want to access static fields and methods on a {@link Class} object, or as a basis for
      * constructing objects of that class using {@link #create(Object...)}
-     * 
-     * @param clazz
-     *            The class to be wrapped
+     *
+     * @param clazz The class to be wrapped
      * @return A wrapped class object, to be used for further reflection.
      */
     public static Reflect on(Class<?> clazz) {
@@ -62,9 +59,8 @@ public class Reflect {
      * Wrap an object.
      * <p>
      * Use this when you want to access instance fields and methods on any {@link Object}
-     * 
-     * @param object
-     *            The object to be wrapped
+     *
+     * @param object The object to be wrapped
      * @return A wrapped object, to be used for further reflection.
      */
     public static Reflect on(Object object) {
@@ -73,9 +69,8 @@ public class Reflect {
 
     /**
      * Conveniently render an {@link AccessibleObject} accessible
-     * 
-     * @param accessible
-     *            The object to render accessible
+     *
+     * @param accessible The object to render accessible
      * @return The argument object rendered accessible
      */
     public static <T extends AccessibleObject> T accessible(T accessible) {
@@ -125,9 +120,8 @@ public class Reflect {
 
     /**
      * Get the wrapped object
-     * 
-     * @param <T>
-     *            A convenience generic parameter for automatic unsafe casting
+     *
+     * @param <T> A convenience generic parameter for automatic unsafe casting
      */
     @SuppressWarnings("unchecked")
     public <T> T get() {
@@ -140,14 +134,11 @@ public class Reflect {
      * This is roughly equivalent to {@link Field#set(Object, Object)}. If the wrapped object is a {@link Class}, then
      * this will set a value to a static member field. If the wrapped object is any other {@link Object}, then this will
      * set a value to an instance member field.
-     * 
-     * @param name
-     *            The field name
-     * @param value
-     *            The new field value
+     *
+     * @param name  The field name
+     * @param value The new field value
      * @return The same wrapped object, to be used for further reflection.
-     * @throws ReflectException
-     *             If any reflection exception occurred.
+     * @throws ReflectException If any reflection exception occurred.
      */
     public Reflect set(String name, Object value) throws ReflectException {
         try {
@@ -176,27 +167,24 @@ public class Reflect {
      * value from an instance member field.
      * <p>
      * If you want to "navigate" to a wrapped version of the field, use {@link #field(String)} instead.
-     * 
-     * @param name
-     *            The field name
+     *
+     * @param name The field name
      * @return The field value
-     * @throws ReflectException
-     *             If any reflection exception occurred.
+     * @throws ReflectException If any reflection exception occurred.
      * @see #field(String)
      */
     public <T> T get(String name) throws ReflectException {
-        return field(name).<T> get();
+        return field(name).<T>get();
     }
 
     /**
-     * 
      * TODO:(简单描述方法作用). <br/>
-     * 
-     * @author kid create 2013-8-29
+     *
      * @param clazz
      * @param name
      * @return
      * @throws NoSuchFieldException
+     * @author kid create 2013-8-29
      */
     public Field getDeclaredField(Class<?> clazz, String name) throws NoSuchFieldException {
         Field field = null;
@@ -221,12 +209,10 @@ public class Reflect {
      * This is roughly equivalent to {@link Field#get(Object)}. If the wrapped object is a {@link Class}, then this will
      * wrap a static member field. If the wrapped object is any other {@link Object}, then this wrap an instance member
      * field.
-     * 
-     * @param name
-     *            The field name
+     *
+     * @param name The field name
      * @return The wrapped field
-     * @throws ReflectException
-     *             If any reflection exception occurred.
+     * @throws ReflectException If any reflection exception occurred.
      */
     public Reflect field(String name) throws ReflectException {
         try {
@@ -255,7 +241,7 @@ public class Reflect {
      * on(object).field("myField");
      * on(object).fields().get("myField");
      * </pre></code>
-     * 
+     *
      * @return A map containing field names and wrapped values.
      */
     public Map<String, Reflect> fields() {
@@ -275,13 +261,11 @@ public class Reflect {
      * Call a method by its name.
      * <p>
      * This is a convenience method for calling <code>call(name, new Object[0])</code>
-     * 
-     * @param name
-     *            The method name
+     *
+     * @param name The method name
      * @return The wrapped method result or the same wrapped object if the method returns <code>void</code>, to be used
-     *         for further reflection.
-     * @throws ReflectException
-     *             If any reflection exception occurred.
+     * for further reflection.
+     * @throws ReflectException If any reflection exception occurred.
      * @see #call(String, Object...)
      */
     public Reflect call(String name) throws ReflectException {
@@ -314,15 +298,12 @@ public class Reflect {
      * <li>public method with similar signature in class hierarchy</li>
      * <li>non-public method with similar signature on declaring class</li>
      * </ol>
-     * 
-     * @param name
-     *            The method name
-     * @param args
-     *            The method arguments
+     *
+     * @param name The method name
+     * @param args The method arguments
      * @return The wrapped method result or the same wrapped object if the method returns <code>void</code>, to be used
-     *         for further reflection.
-     * @throws ReflectException
-     *             If any reflection exception occurred.
+     * for further reflection.
+     * @throws ReflectException If any reflection exception occurred.
      */
     public Reflect call(String name, Object... args) throws ReflectException {
         Class<?>[] types = types(args);
@@ -401,7 +382,7 @@ public class Reflect {
      * an exactly matching signature.
      */
     private boolean isSimilarSignature(Method possiblyMatchingMethod, String desiredMethodName,
-            Class<?>[] desiredParamTypes) {
+                                       Class<?>[] desiredParamTypes) {
         return possiblyMatchingMethod.getName().equals(desiredMethodName)
                 && match(possiblyMatchingMethod.getParameterTypes(), desiredParamTypes);
     }
@@ -410,10 +391,9 @@ public class Reflect {
      * Call a constructor.
      * <p>
      * This is a convenience method for calling <code>create(new Object[0])</code>
-     * 
+     *
      * @return The wrapped new object, to be used for further reflection.
-     * @throws ReflectException
-     *             If any reflection exception occurred.
+     * @throws ReflectException If any reflection exception occurred.
      * @see #create(Object...)
      */
     public Reflect create() throws ReflectException {
@@ -438,12 +418,10 @@ public class Reflect {
      * public C(Number param1, Object param2);
      * public C(int param1, Object param2);
      * </pre></code>
-     * 
-     * @param args
-     *            The constructor arguments
+     *
+     * @param args The constructor arguments
      * @return The wrapped new object, to be used for further reflection.
-     * @throws ReflectException
-     *             If any reflection exception occurred.
+     * @throws ReflectException If any reflection exception occurred.
      */
     public Reflect create(Object... args) throws ReflectException {
         Class<?>[] types = types(args);
@@ -470,9 +448,8 @@ public class Reflect {
 
     /**
      * Create a proxy for the wrapped object allowing to typesafely invoke methods on it using a custom interface
-     * 
-     * @param proxyType
-     *            The interface type that is implemented by the proxy
+     *
+     * @param proxyType The interface type that is implemented by the proxy
      * @return A proxy for the wrapped object
      */
     @SuppressWarnings("unchecked")
@@ -510,7 +487,7 @@ public class Reflect {
             }
         };
 
-        return (P) Proxy.newProxyInstance(proxyType.getClassLoader(), new Class[] { proxyType }, handler);
+        return (P) Proxy.newProxyInstance(proxyType.getClassLoader(), new Class[]{proxyType}, handler);
     }
 
     /**
@@ -623,7 +600,7 @@ public class Reflect {
 
     /**
      * Get an array of types for an array of objects
-     * 
+     *
      * @see Object#getClass()
      */
     private static Class<?>[] types(Object... values) {
@@ -643,7 +620,7 @@ public class Reflect {
 
     /**
      * Load a class
-     * 
+     *
      * @see Class#forName(String)
      */
     private static Class<?> forName(String name) throws ReflectException {
@@ -656,7 +633,7 @@ public class Reflect {
 
     /**
      * Get the type of the wrapped object.
-     * 
+     *
      * @see Object#getClass()
      */
     public Class<?> type() {

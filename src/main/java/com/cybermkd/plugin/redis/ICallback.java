@@ -6,7 +6,7 @@ package com.cybermkd.plugin.redis;
  * Cache 对象使用 select(int) 方法临时切换数据库
  */
 public interface ICallback {
-	<T> T call(Cache cache);
+    <T> T call(Cache cache);
 }
 
 

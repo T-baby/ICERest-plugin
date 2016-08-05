@@ -7,14 +7,14 @@ package com.cybermkd.plugin.redis;
  * 选择不同的命名方式，默认命名方式是  Object.toString()
  */
 public interface IKeyNamingPolicy {
-	
-	String getKeyName(Object key);
-	
-	static final IKeyNamingPolicy defaultKeyNamingPolicy = new IKeyNamingPolicy() {
-		public String getKeyName(Object key) {
-			return key.toString();
-		}
-	};
+
+    String getKeyName(Object key);
+
+    static final IKeyNamingPolicy defaultKeyNamingPolicy = new IKeyNamingPolicy() {
+        public String getKeyName(Object key) {
+            return key.toString();
+        }
+    };
 }
 
 

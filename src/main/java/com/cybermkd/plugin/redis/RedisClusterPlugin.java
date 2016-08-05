@@ -15,7 +15,7 @@ import java.util.Set;
  * 创建日期: 16/7/5
  * 文件描述:
  */
-public class RedisClusterPlugin implements Plugin{
+public class RedisClusterPlugin implements Plugin {
     // 集群名称
     String clusterName = null;
 
@@ -34,15 +34,13 @@ public class RedisClusterPlugin implements Plugin{
     // 集群地址集合
     Set<HostAndPort> redisClusterNodes;
 
-    private Logger logger=Logger.getLogger(RedisClusterPlugin.class);
+    private Logger logger = Logger.getLogger(RedisClusterPlugin.class);
 
     /**
-     *
      * 传入集群信息
      *
-     * @param clusterName 集群名称
+     * @param clusterName       集群名称
      * @param redisClusterNodes 集群地址集合
-     *
      */
     public RedisClusterPlugin(String clusterName, Set<HostAndPort> redisClusterNodes) {
 
@@ -58,13 +56,11 @@ public class RedisClusterPlugin implements Plugin{
     }
 
     /**
-     *
      * 传入集群信息
      *
-     * @param clusterName 集群名称
+     * @param clusterName       集群名称
      * @param redisClusterNodes 集群地址集合
-     * @param timeout 超时时间
-     *
+     * @param timeout           超时时间
      */
     public RedisClusterPlugin(String clusterName, Set<HostAndPort> redisClusterNodes, Integer timeout) {
 
@@ -77,13 +73,11 @@ public class RedisClusterPlugin implements Plugin{
     }
 
     /**
-     *
      * 传入集群信息
      *
-     * @param clusterName 集群名称
+     * @param clusterName       集群名称
      * @param redisClusterNodes 集群地址集合
-     * @param  poolConfig 连接池对象
-     *
+     * @param poolConfig        连接池对象
      */
     public RedisClusterPlugin(String clusterName, Set<HostAndPort> redisClusterNodes, GenericObjectPoolConfig poolConfig) {
 
@@ -96,14 +90,12 @@ public class RedisClusterPlugin implements Plugin{
     }
 
     /**
-     *
      * 传入集群信息
      *
-     * @param clusterName 集群名称
+     * @param clusterName       集群名称
      * @param redisClusterNodes 集群地址集合
-     * @param timeout 超时时间
-     * @param poolConfig 连接池配置
-     *
+     * @param timeout           超时时间
+     * @param poolConfig        连接池配置
      */
     public RedisClusterPlugin(String clusterName, Set<HostAndPort> redisClusterNodes, Integer timeout, GenericObjectPoolConfig poolConfig) {
 
@@ -116,12 +108,10 @@ public class RedisClusterPlugin implements Plugin{
     }
 
     /**
-     *
      * 传入集群信息
      *
-     * @param clusterName 集群名称
+     * @param clusterName       集群名称
      * @param redisClusterNodes 集群地址集合
-     *
      */
     public RedisClusterPlugin(String clusterName, Set<HostAndPort> redisClusterNodes, Integer timeout, Integer maxRedirections) {
 
@@ -134,13 +124,11 @@ public class RedisClusterPlugin implements Plugin{
     }
 
     /**
-     *
      * 传入集群信息
      *
-     * @param clusterName 集群名称
+     * @param clusterName       集群名称
      * @param redisClusterNodes 集群地址集合
-     * @param  poolConfig 连接池对象
-     *
+     * @param poolConfig        连接池对象
      */
     public RedisClusterPlugin(String clusterName, Set<HostAndPort> redisClusterNodes, Integer timeout, Integer maxRedirections, GenericObjectPoolConfig poolConfig) {
 
@@ -155,15 +143,15 @@ public class RedisClusterPlugin implements Plugin{
     @Override
     public boolean start() {
 
-        if(timeout != null && maxRedirections != null && poolConfig != null) {
+        if (timeout != null && maxRedirections != null && poolConfig != null) {
             jedisCluster = new JedisCluster(redisClusterNodes, timeout, maxRedirections, poolConfig);
-        } else if(timeout != null && maxRedirections != null) {
+        } else if (timeout != null && maxRedirections != null) {
             jedisCluster = new JedisCluster(redisClusterNodes, timeout, maxRedirections);
-        } else if(timeout != null && poolConfig != null) {
+        } else if (timeout != null && poolConfig != null) {
             jedisCluster = new JedisCluster(redisClusterNodes, timeout, poolConfig);
-        } else if(timeout != null) {
+        } else if (timeout != null) {
             jedisCluster = new JedisCluster(redisClusterNodes, timeout);
-        } else if(poolConfig != null){
+        } else if (poolConfig != null) {
             jedisCluster = new JedisCluster(redisClusterNodes, poolConfig);
         } else {
             jedisCluster = new JedisCluster(redisClusterNodes);
@@ -201,8 +189,8 @@ public class RedisClusterPlugin implements Plugin{
         }
 
         // 检查集群具体地址和端口号是否正常
-        if(redisClusterNodes != null && redisClusterNodes.size()>0) {
-            for(HostAndPort hap : redisClusterNodes) {
+        if (redisClusterNodes != null && redisClusterNodes.size() > 0) {
+            for (HostAndPort hap : redisClusterNodes) {
 
                 // 获取主机ip
                 String host = hap.getHost();
@@ -216,7 +204,7 @@ public class RedisClusterPlugin implements Plugin{
                 Integer port = hap.getPort();
 
                 // 空端口数据
-                if(port == null) {
+                if (port == null) {
                     throw new IllegalArgumentException("port can not be blank.");
                 }
 

@@ -22,8 +22,7 @@ public class RedisCluster {
      * 插入新集群缓存
      *
      * @param cacheName 集群缓存名称
-     *
-     * @param cache 集群缓存
+     * @param cache     集群缓存
      */
     public static void addCache(String cacheName, JedisCluster cache) {
 
@@ -39,13 +38,10 @@ public class RedisCluster {
     }
 
     /**
-     *
      * 删除集群缓存
      *
      * @param cacheName 集群缓存名称
-     *
      * @return JedisCluster
-     *
      */
     public static JedisCluster removeCache(String cacheName) {
 
@@ -70,7 +66,6 @@ public class RedisCluster {
     }
 
     /**
-     *
      * 使用主集群缓存
      *
      * @return JedisCluster
@@ -80,11 +75,9 @@ public class RedisCluster {
     }
 
     /**
-     *
      * 使用指定名称集群缓存
      *
      * @param cacheName 集群缓存名称
-     *
      * @return JedisCluster
      */
     public static JedisCluster use(String cacheName) {
