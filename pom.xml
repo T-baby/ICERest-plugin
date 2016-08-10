@@ -160,6 +160,14 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--motan-->
+        <dependency>
+            <groupId>com.weibo</groupId>
+            <artifactId>motan-registry-zookeeper</artifactId>
+            <version>0.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
     <build>
