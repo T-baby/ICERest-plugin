@@ -120,6 +120,10 @@ public class RedisPlugin implements Plugin {
         return jedisPoolConfig;
     }
 
+    public void setJedisPoolConfig(JedisPoolConfig config) {
+        this.jedisPoolConfig = config;
+    }
+
     // ---------
 
     public void setSerializer(ISerializer serializer) {
