@@ -21,6 +21,6 @@ public class MotanPlugin implements Plugin{
     public boolean stop() {
         MotanSwitcherUtil.setSwitcherValue(MotanConstants.REGISTRY_HEARTBEAT_SWITCHER, false);
         logger.warn("(｡・`ω´･) Motan has been closed by ICEREST !");
-        return false;
+        return true;
     }
 }
