@@ -5,7 +5,7 @@
 
     <groupId>com.cybermkd</groupId>
     <artifactId>ICEREST-PLUGIN</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>ICEREST-PLUGIN</name>
     <description>ICEREST官方插件集合</description>
     <url>https://github.com/T-baby/ICEREST-PLUGIN</url>
@@ -163,8 +163,36 @@
         <!--motan-->
         <dependency>
             <groupId>com.weibo</groupId>
-            <artifactId>motan-registry-zookeeper</artifactId>
-            <version>0.1.1</version>
+            <artifactId>motan-core</artifactId>
+            <version>0.2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.weibo</groupId>
+            <artifactId>motan-transport-netty</artifactId>
+            <version>0.2.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- only needed for spring-based features -->
+        <dependency>
+            <groupId>com.weibo</groupId>
+            <artifactId>motan-springsupport</artifactId>
+            <version>0.2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.2.4.RELEASE</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--beetl-->
+        <dependency>
+            <groupId>com.ibeetl</groupId>
+            <artifactId>beetl</artifactId>
+            <version>2.5.2</version>
             <scope>provided</scope>
         </dependency>
 
